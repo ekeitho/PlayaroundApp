@@ -11,7 +11,6 @@ import android.test.ActivityInstrumentationTestCase2;
  */
 public class TestPref extends ActivityInstrumentationTestCase2<MainActivity> {
 
-    private Activity mainActivity;
     private SharedPreferences pref;
 
     public TestPref()
@@ -22,7 +21,7 @@ public class TestPref extends ActivityInstrumentationTestCase2<MainActivity> {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        mainActivity = getActivity();
+        Activity mainActivity = getActivity();
         pref = mainActivity.getSharedPreferences("com.ekeitho.sharedprefprac", Context.MODE_PRIVATE);
     }
 

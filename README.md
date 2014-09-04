@@ -5,4 +5,4 @@ Area for practicing Android's APIs.
 
 ### Versions
 
-   v1.0.0 - fully built playaround with shared preferences
+   >v1.0.0 - fully built playaround with shared preferences

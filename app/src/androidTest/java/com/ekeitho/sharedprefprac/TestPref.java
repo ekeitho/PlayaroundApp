@@ -27,6 +27,7 @@ public class TestPref extends ActivityInstrumentationTestCase2<MainActivity> {
     }
 
 
+
     public void testSharedPref() {
         assertEquals("should not be in database", pref.getString("nada", ""), "");
 

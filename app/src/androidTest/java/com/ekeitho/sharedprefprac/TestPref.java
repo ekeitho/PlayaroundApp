@@ -36,9 +36,9 @@ public class TestPref extends ActivityInstrumentationTestCase2<MainActivity> {
         // remove key value and test
         pref.edit().remove("test1").apply();
         assertEquals("test1 should no longer be there", pref.getString("test1", "error"), "error");
-
-        // testing travis to make sure it fails on test
-        assertEquals(false, true);
+        // test on boolean
+        pref.edit().putBoolean("insert", true).apply();
+        assertEquals("should be true", pref.getBoolean("insert", false), true);
     }
 
 }

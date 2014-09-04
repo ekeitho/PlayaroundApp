@@ -11,8 +11,8 @@ import android.test.ActivityInstrumentationTestCase2;
  */
 public class TestPref extends ActivityInstrumentationTestCase2<MainActivity> {
 
-    Activity mainActivity;
-    SharedPreferences pref;
+    private Activity mainActivity;
+    private SharedPreferences pref;
 
     public TestPref()
     {

@@ -24,6 +24,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_main);
         initialize();
 
+        //set listeners
+        getButton.setOnClickListener(this);
+        storeButton.setOnClickListener(this);
 
     }
 
@@ -33,9 +36,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         edit = (EditText) findViewById(R.id.editText);
         getButton = (Button) findViewById(R.id.getButton);
         storeButton = (Button) findViewById(R.id.storeButton);
-        //set listeners
-        getButton.setOnClickListener(this);
-        storeButton.setOnClickListener(this);
         //initiate shared preferences
         pref = this.getSharedPreferences("com.ekeitho.sharedprefprac", MODE_PRIVATE);
 

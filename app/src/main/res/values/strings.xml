@@ -2,11 +2,10 @@
 <resources>
 
     <string name="app_name">Data Storage Play</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="store_button_string">Store Text</string>
-    <string name="get_button_string">Get Store</string>
+    <string name="get_button_string">Retrieve Text</string>
     <string name="hint_edit_text">Write to store field</string>
-    <string name="text_view_default">Write text. Choose button.</string>
+    <string name="text_view_default">Write text. \n Choose button.</string>
 
 </resources>

@@ -12,7 +12,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Store Text"
+        android:text="@string/store_button_string"
         android:id="@+id/storeButton"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
@@ -20,14 +20,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Last Store"
+        android:text="@string/get_button_string"
         android:id="@+id/getButton"
         android:layout_alignTop="@+id/storeButton"
         android:layout_alignParentEnd="true" />
 
 
     <EditText
-        android:hint="Write to store field"
+        android:hint="@string/hint_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
@@ -36,15 +36,16 @@
         android:layout_marginTop="50dp" />
 
     <TextView
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Field"
+        android:text="@string/text_view_default"
         android:id="@+id/textView"
         android:layout_toStartOf="@id/getButton"
         android:layout_marginTop="93dp"
         android:layout_toEndOf="@+id/storeButton"
         android:layout_below="@id/getButton"
-        android:layout_marginLeft="42dp" />
+        />
 
 
 </RelativeLayout>

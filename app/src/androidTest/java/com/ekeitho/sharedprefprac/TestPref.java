@@ -43,7 +43,7 @@ public class TestPref extends ActivityInstrumentationTestCase2<MainActivity> {
         pref.edit().putBoolean("insert", true).apply();
         assertEquals("should be true", pref.getBoolean("insert", false), true);
         pref.edit().remove("insert").apply();
-        assertEquals("should be false", pref.getBoolean("insert", true), false);
+        assertEquals("should be false", pref.getBoolean("insert", false), false);
 
     }
 

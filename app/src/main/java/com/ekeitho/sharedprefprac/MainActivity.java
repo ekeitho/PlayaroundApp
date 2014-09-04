@@ -68,7 +68,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.getButton:
                 Log.v("HUH", "HELLO");
                 view.setText(pref.getString("text", "nothing received"));
-                Log.v("HMM", pref.getBoolean("insert", false) + "");
                 break;
             case R.id.storeButton:
                 pref.edit().putString("text", edit.getText().toString()).apply();

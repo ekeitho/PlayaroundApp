@@ -16,7 +16,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     private TextView view;
     private EditText editTextKey, editTextValue;
-    private Button getButton, storeButton;
+    private Button getButton, storeButton, clearButton;
     private SharedPreferences pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         //set listeners
         getButton.setOnClickListener(this);
         storeButton.setOnClickListener(this);
+        clearButton.setOnClickListener(this);
+
 
     }
 
@@ -37,6 +39,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         editTextValue = (EditText) findViewById(R.id.editTextValue);
         getButton = (Button) findViewById(R.id.getButton);
         storeButton = (Button) findViewById(R.id.storeButton);
+        clearButton = (Button) findViewById(R.id.clearButton);
         //initiate shared preferences
         pref = this.getSharedPreferences("com.ekeitho.sharedprefprac", MODE_PRIVATE);
 
@@ -73,6 +76,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.storeButton:
                 pref.edit().putString(editTextKey.getText().toString(),
                                 editTextValue.getText().toString()).apply();
+                break;
+
+            case R.id.clearButton:
+                pref.edit().clear().apply();
+                view.setText("Shared Preferences \n Deleted.");
                 break;
         }
 

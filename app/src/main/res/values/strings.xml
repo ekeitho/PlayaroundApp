@@ -7,6 +7,7 @@
     <string name="get_button_string">Retrieve Text</string>
     <string name="key">Key</string>
     <string name="value">Value</string>
+    <string name="clear">Clear Preferences.</string>
     <string name="text_view_default">Write text. \n Choose button.</string>
 
 </resources>

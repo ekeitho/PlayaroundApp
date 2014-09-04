@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity implements View.OnClickListener{
 
     private TextView view;
-    private EditText edit;
+    private EditText editTextKey, editTextValue;
     private Button getButton, storeButton;
     private SharedPreferences pref;
     @Override
@@ -33,7 +33,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
     void initialize() {
         //get views
         view = (TextView) findViewById(R.id.textView);
-        edit = (EditText) findViewById(R.id.editText);
+        editTextKey = (EditText) findViewById(R.id.editTextKey);
+        editTextValue = (EditText) findViewById(R.id.editTextValue);
         getButton = (Button) findViewById(R.id.getButton);
         storeButton = (Button) findViewById(R.id.storeButton);
         //initiate shared preferences
@@ -63,12 +64,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         switch( v.getId() ) {
             case R.id.getButton:
-                Log.v("HUH", "HELLO");
-                view.setText(pref.getString("text", "nothing received"));
+                view.setText(pref.getString(
+                        editTextKey.getText().toString(), "error. no key match."));
+                /* if user clicks retrieve the erase if anything in value edit text */
+                editTextValue.setText("");
                 break;
+
             case R.id.storeButton:
-                pref.edit().putString("text", edit.getText().toString()).apply();
-                Log.v("WHAT", "HELLO");
+                pref.edit().putString(editTextKey.getText().toString(),
+                                editTextValue.getText().toString()).apply();
                 break;
         }
 

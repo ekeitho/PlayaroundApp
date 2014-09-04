@@ -27,13 +27,21 @@
 
 
     <EditText
-        android:hint="@string/hint_edit_text"
+        android:hint="@string/key"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@id/getButton"
-        android:layout_marginTop="50dp" />
+        android:id="@+id/editTextKey"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextValue"
+        android:hint="@string/value"
+        android:layout_alignTop="@+id/editTextKey"
+        android:layout_alignStart="@+id/getButton" />
 
     <TextView
         android:gravity="center"
@@ -46,6 +54,7 @@
         android:layout_toEndOf="@+id/storeButton"
         android:layout_below="@id/getButton"
         />
+
 
 
 </RelativeLayout>

@@ -29,17 +29,22 @@ public class TestPref extends ActivityInstrumentationTestCase2<MainActivity> {
 
 
     public void testSharedPref() {
-        assertEquals("should not be in database", pref.getString("nada", ""), "");
+        // must use keys not used in program, because well... shared preferences :)
 
+        assertEquals("should not be in database", pref.getString("nada", ""), "");
         // add key value and test
         pref.edit().putString("test1", "hello there!").apply();
         assertEquals("test1 should be there", pref.getString("test1", "error"), "hello there!");
         // remove key value and test
         pref.edit().remove("test1").apply();
         assertEquals("test1 should no longer be there", pref.getString("test1", "error"), "error");
-        // test on boolean
+
+        // same test on boolean
         pref.edit().putBoolean("insert", true).apply();
         assertEquals("should be true", pref.getBoolean("insert", false), true);
+        pref.edit().remove("insert").apply();
+        assertEquals("should be false", pref.getBoolean("insert", true), false);
+
     }
 
 }

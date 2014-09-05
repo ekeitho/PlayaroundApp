@@ -11,5 +11,6 @@
     <string name="text_view_default">Write text. \n Choose button.</string>
     <string name="title_activity_my_sqlite_helper">MySQLiteHelper</string>
     <string name="hello_world">Hello world!</string>
+    <string name="hello">Hell0</string>
 
 </resources>

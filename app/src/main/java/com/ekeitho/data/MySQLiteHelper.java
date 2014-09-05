@@ -1,36 +1,39 @@
 package com.ekeitho.data;
 
 import android.app.Activity;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.ekeitho.data.R;
 
-public class MySQLiteHelper extends Activity {
+public class MySQLiteHelper extends SQLiteOpenHelper {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_sqlite_helper);
+    public static final String TABLE_NAME = "comment_tables";
+    public static final String ID = "_id";
+    public static final String CONTENT = "comment";
+
+    private static final String DATABASE_NAME = "comments.db";
+    private static final int DATABASE_VERSION = 1;
+
+    private static final String DATABASE_CREATE = "CREATE TABLE "
+            + TABLE_NAME + "(" + ID + " INTEGER primary key autoincrement not null,"
+            + CONTENT + " TEXT not null);";
+
+    public MySQLiteHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my_sqlite_helper, menu);
-        return true;
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(DATABASE_CREATE);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
     }
 }

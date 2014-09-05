@@ -27,6 +27,7 @@ public class TestPref extends AndroidTestCase {
         long insertId = db.insert(MySQLiteHelper.TABLE_NAME, null, values);
         assertTrue(insertId != -1);
 
+
         Cursor commentCursor = db.query(
                 MySQLiteHelper.TABLE_NAME,
                 null, //returns all the columns
@@ -37,7 +38,7 @@ public class TestPref extends AndroidTestCase {
                 null //sort
         );
 
-        assertTrue(commentCursor.moveToFirst());
+        assertTrue(commentCursor.moveToLast());
 
         assertEquals(commentCursor.getString(1), "Keith you are the best!");
         assertEquals(insertId, commentCursor.getLong(0));

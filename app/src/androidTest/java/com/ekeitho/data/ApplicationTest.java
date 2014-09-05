@@ -1,4 +1,4 @@
-package com.ekeitho.sharedprefprac;
+package com.ekeitho.data;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>

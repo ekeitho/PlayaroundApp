@@ -31,18 +31,9 @@ public class TestDatabaseActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         Intent intent = getIntent();
         String action = intent.getAction();
         String type = intent.getType();
-
-        if (Intent.ACTION_SEND.equals(action) && type != null) {
-            if ("text/plain".equals(type)) {
-                handleSendText(intent); // Handle text being sent
-            }
-        }
-
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_sqlite_helper);
@@ -55,6 +46,13 @@ public class TestDatabaseActivity extends ListActivity {
                 (this, android.R.layout.simple_list_item_1, values));
 
         adapter = (ArrayAdapter<Comment>) getListAdapter();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                handleSendText(intent); // Handle text being sent
+            }
+        }
+
     }
 
 

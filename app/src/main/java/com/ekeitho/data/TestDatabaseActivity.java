@@ -39,9 +39,8 @@ public class TestDatabaseActivity extends ListActivity {
         dataSource.open();
 
         List<Comment> values = dataSource.getAllComments();
-        ArrayAdapter<Comment> adapterCreate =
-                new ArrayAdapter<Comment>(this, android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapterCreate);
+        setListAdapter(new ArrayAdapter<Comment>
+                (this, android.R.layout.simple_list_item_1, values));
 
         adapter = (ArrayAdapter<Comment>) getListAdapter();
     }
@@ -55,8 +54,7 @@ public class TestDatabaseActivity extends ListActivity {
                 /* need to have final position for alert inner class */
                 final int pos = position;
 
-                AlertDialog.Builder alertDialogBuilder =
-                        new AlertDialog.Builder(context);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 alertDialogBuilder
                         .setTitle("What would you like to do?")
                         .setSingleChoiceItems(sequences, 2, new DialogInterface.OnClickListener() {
@@ -86,7 +84,6 @@ public class TestDatabaseActivity extends ListActivity {
                             }
                         })
                         .create().show();
-
                 return true;
             }
         });

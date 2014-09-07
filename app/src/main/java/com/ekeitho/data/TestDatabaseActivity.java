@@ -31,13 +31,25 @@ public class TestDatabaseActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                handleSendText(intent); // Handle text being sent
+            }
+        }
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_sqlite_helper);
         editText = (EditText) findViewById(R.id.editText);
 
         dataSource = new CommentsDataSource(this);
         dataSource.open();
-
         List<Comment> values = dataSource.getAllComments();
         setListAdapter(new ArrayAdapter<Comment>
                 (this, android.R.layout.simple_list_item_1, values));
@@ -89,6 +101,12 @@ public class TestDatabaseActivity extends ListActivity {
         });
     }
 
+    void handleSendText(Intent intent) {
+        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (sharedText != null) {
+            editText.setText(sharedText);
+        }
+    }
 
     public void onClick(View view) {
         Comment comment = null;

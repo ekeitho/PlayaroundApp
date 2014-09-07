@@ -60,16 +60,16 @@ public class TestDatabaseActivity extends ListActivity {
                 alertDialogBuilder
                         .setTitle("What would you like to do?")
                         .setSingleChoiceItems(sequences, 2, new DialogInterface.OnClickListener() {
+                            Comment comment = (Comment) getListAdapter().getItem(pos);
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 /* delete */
                                 if (which == 0) {
-                                    Comment comment = (Comment) getListAdapter().getItem(pos);
                                     dataSource.deleteComment(comment);
                                     adapter.remove(comment);
                                 } else {
                                     Intent intent = new Intent(Intent.ACTION_SEND);
-                                    intent.putExtra(Intent.EXTRA_TEXT, editText.getText().toString());
+                                    intent.putExtra(Intent.EXTRA_TEXT, comment.toString());
                                     intent.setType("text/plain");
                                     Intent chooser = Intent.createChooser(intent, "Send data to");
                                     if (chooser.resolveActivity(getPackageManager()) != null) {

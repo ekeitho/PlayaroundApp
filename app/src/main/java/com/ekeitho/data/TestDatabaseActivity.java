@@ -1,6 +1,9 @@
 package com.ekeitho.data;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +23,7 @@ public class TestDatabaseActivity extends ListActivity {
 
     private CommentsDataSource dataSource;
     private ArrayAdapter<Comment> adapter;
+    final Context context = this;
 
     EditText editText;
 
@@ -47,15 +51,46 @@ public class TestDatabaseActivity extends ListActivity {
         this.getListView().setLongClickable(true);
         this.getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View v, int position, long id) {
-                Comment comment = (Comment) getListAdapter().getItem(position);
-                dataSource.deleteComment(comment);
-                adapter.remove(comment);
+                CharSequence[] sequences = {"Delete", "Send to another app"};
+                /* need to have final position for alert inner class */
+                final int pos = position;
+
+                AlertDialog.Builder alertDialogBuilder =
+                        new AlertDialog.Builder(context);
+                alertDialogBuilder
+                        .setTitle("What would you like to do?")
+                        .setSingleChoiceItems(sequences, 2, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                /* delete */
+                                if (which == 0) {
+                                    Comment comment = (Comment) getListAdapter().getItem(pos);
+                                    dataSource.deleteComment(comment);
+                                    adapter.remove(comment);
+                                } else {
+                                    Intent intent = new Intent(Intent.ACTION_SEND);
+                                    intent.putExtra(Intent.EXTRA_TEXT, editText.getText().toString());
+                                    intent.setType("text/plain");
+                                    Intent chooser = Intent.createChooser(intent, "Send data to");
+                                    if (chooser.resolveActivity(getPackageManager()) != null) {
+                                        startActivity(chooser);
+                                    }
+                                }
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        })
+                        .create().show();
+
                 return true;
             }
         });
     }
-
-
 
 
     public void onClick(View view) {
@@ -65,16 +100,6 @@ public class TestDatabaseActivity extends ListActivity {
                 comment = dataSource.createComment(editText.getText().toString());
                 adapter.add(comment);
                 editText.setText("");
-                break;
-            case R.id.send_data_button:
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                Log.v("Text", editText.getText().toString());
-                intent.putExtra(Intent.EXTRA_TEXT, editText.getText().toString());
-                intent.setType("text/plain");
-                Intent chooser = Intent.createChooser(intent, "Send data to");
-                if( chooser.resolveActivity(getPackageManager()) != null) {
-                    startActivity(chooser);
-                }
                 break;
         }
         adapter.notifyDataSetChanged();
